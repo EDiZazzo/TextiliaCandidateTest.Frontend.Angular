@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cloth } from '../model/cloth';
 import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
+import {ClothService} from "../cloth-service/cloth.service";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-cloth-details',
@@ -9,7 +11,7 @@ import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 export class ClothDetailsComponent implements OnInit {
   cloth!: Cloth;
 
-  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig) {}
+  constructor(public ref: DynamicDialogRef, public config: DynamicDialogConfig, public clothService: ClothService) {}
 
   ngOnInit() {
     this.cloth = this.config.data.cloth;
@@ -17,5 +19,6 @@ export class ClothDetailsComponent implements OnInit {
 
   onClose(): void {
     this.ref.close();
+    this.clothService.emitClothAddedEvent(of(this.cloth));
   }
 }

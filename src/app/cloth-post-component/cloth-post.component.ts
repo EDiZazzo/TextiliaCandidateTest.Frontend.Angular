@@ -6,6 +6,7 @@ import { ClothRequest } from "../model/cloth-request";
 import { MessageService } from "primeng/api";
 import { DialogService} from "primeng/dynamicdialog";
 import { ClothDetailsComponent } from "../cloth-details/cloth-details.component";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-post-cloth',
@@ -42,6 +43,7 @@ export class ClothPostComponent implements OnInit {
             this.clothService.savedCloth.set(cloth);
             this.showClothDetailToast(cloth);
             this.showSuccess();
+            this.clothService.emitClothAddedEvent(of(cloth))
             this.clothService.refreshClothes();
           },
           (error) => {

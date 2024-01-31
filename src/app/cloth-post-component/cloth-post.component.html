@@ -8,18 +8,18 @@
         <label for="name">Name</label>
         <input pInputText id="name" placeholder="Enter cloth name" formControlName="name" required>
       </div>
-
+      <br>
       <div class="p-field p-col-12">
         <label for="size">Size</label>
         <input pInputText id="size" placeholder="Enter cloth size" formControlName="size" required>
       </div>
-
+      <br>
       <div class="p-field p-col-12">
         <label for="color">Color</label>
         <input pInputText id="color" placeholder="Enter cloth color" formControlName="color" required>
       </div>
     </div>
-
+    <br>
     <p-footer>
       <p-toast></p-toast>
       <p-button label="Save" type="submit" [disabled]="clothForm.invalid"></p-button>
