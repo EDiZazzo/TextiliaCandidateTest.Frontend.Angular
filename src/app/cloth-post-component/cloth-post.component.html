@@ -1,0 +1,29 @@
+<p-card styleClass="dynamic-form-card" class="flex justify-content-center">
+  <div class="text-center">
+    <h1>Insert a New Cloth</h1>
+  </div>
+  <form [formGroup]="clothForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col-12">
+        <label for="name">Name</label>
+        <input pInputText id="name" placeholder="Enter cloth name" formControlName="name" required>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="size">Size</label>
+        <input pInputText id="size" placeholder="Enter cloth size" formControlName="size" required>
+      </div>
+
+      <div class="p-field p-col-12">
+        <label for="color">Color</label>
+        <input pInputText id="color" placeholder="Enter cloth color" formControlName="color" required>
+      </div>
+    </div>
+
+    <p-footer>
+      <p-toast></p-toast>
+      <p-button label="Save" type="submit" [disabled]="clothForm.invalid"></p-button>
+    </p-footer>
+  </form>
+</p-card>
+<button type="button" pButton pRipple (click)="show()" label="Multiple"></button>
