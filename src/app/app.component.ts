@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import {RouterOutlet} from "@angular/router";
-import {ClothPostComponent} from "./cloth-post-component/cloth-post.component";
 import {ClothGetComponentModule} from "./cloth-get-component/cloth-get.component.module";
+import {ClothPostComponentModule} from "./cloth-post-component/cloth-post.component.module";
+import {ClothDetailsComponentModule} from "./cloth-details/cloth-details.component.module";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    ClothPostComponent,
-    ClothGetComponentModule
+    ClothPostComponentModule,
+    ClothGetComponentModule,
+    ClothDetailsComponentModule
   ],
+  providers:[],
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {

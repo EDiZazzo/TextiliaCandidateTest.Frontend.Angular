@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {effect, Injectable, signal, WritableSignal} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import { SettingsService } from '../settings-service/settings.service';
 import { Cloth } from '../model/cloth';
 import { ClothRequest } from "../model/cloth-request";
@@ -10,8 +10,23 @@ import { ClothRequest } from "../model/cloth-request";
 })
 export class ClothService {
   private refreshClothesSubject = new Subject<void>();
+  private clothAddedSubject = new Subject<Observable<Cloth>>();
 
-  constructor(private http: HttpClient, private settingsService: SettingsService) {}
+  savedCloth: WritableSignal<Cloth | null> = signal(null);
+
+  emitClothAddedEvent(cloth: Observable<Cloth>) {
+    this.clothAddedSubject.next(cloth);
+  }
+
+  getSavedClothSignal(): Observable<Cloth | null> {
+    return of(this.savedCloth()) as Observable<Cloth | null>;
+  }
+
+  constructor(private http: HttpClient, private settingsService: SettingsService) {
+    effect(() => {
+      console.log(`The name of savedCloth is: ${this.savedCloth()?.name}`);
+    });
+  }
 
   getAll(): Observable<Cloth[]> {
     const apiUrl = this.settingsService.clothApiUrl;

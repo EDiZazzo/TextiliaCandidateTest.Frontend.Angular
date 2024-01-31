@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClothService } from '../cloth-service/cloth.service';
 import { Cloth } from '../model/cloth';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -12,7 +12,6 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe],
 })
 export class ClothGetComponent implements OnInit {
-
   clothes$: Observable<Cloth[]> | null = of([]);
   loading: boolean = false;
 
@@ -21,6 +20,11 @@ export class ClothGetComponent implements OnInit {
   ngOnInit(): void {
     this.clothes$ = null;
     this.loadClothes();
+
+    this.clothService.getSavedClothSignal().subscribe(() => {
+      this.loadClothes();
+    });
+
     this.clothService.getRefreshClothes().subscribe(() => {
       this.loadClothes();
     });
@@ -39,5 +43,6 @@ export class ClothGetComponent implements OnInit {
       })
     );
   }
+
   protected readonly Cloth = Cloth;
 }

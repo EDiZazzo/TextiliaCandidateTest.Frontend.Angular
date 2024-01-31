@@ -4,6 +4,8 @@ import { FormsModule } from "@angular/forms";
 import { AsyncPipe, DatePipe, NgForOf, NgIf} from "@angular/common";
 import { TableModule } from "primeng/table";
 import { ButtonModule } from "primeng/button";
+import {DialogService} from "primeng/dynamicdialog";
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
     declarations: [ClothGetComponent],
@@ -14,9 +16,11 @@ import { ButtonModule } from "primeng/button";
     TableModule,
     NgIf,
     ButtonModule,
-    DatePipe
+    DatePipe,
+    DialogModule
   ],
-    providers: [],
+    providers: [
+      DialogService],
     exports: [
         ClothGetComponent
     ]
