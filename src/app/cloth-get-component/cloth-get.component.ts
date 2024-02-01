@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, computed, effect, OnInit, signal, Signal, untracked} from '@angular/core';
 import { ClothService } from '../cloth-service/cloth.service';
 import { Cloth } from '../model/cloth';
-import { Observable, of } from 'rxjs';
+import {Observable, of, tap} from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { DatePipe } from '@angular/common';
 
@@ -14,12 +14,19 @@ import { DatePipe } from '@angular/common';
 export class ClothGetComponent implements OnInit {
   clothes$: Observable<Cloth[]> | null = of([]);
   loading: boolean = false;
+  counter= signal(0);
 
   constructor(public clothService: ClothService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.clothes$ = null;
     this.loadClothes();
+
+    effect(() => {
+      this.loadClothes();
+      console.log("effect triggered");
+      return this.clothService.savedCloth;
+    });
 
     this.clothService.getSavedClothSignal().subscribe(() => {
       this.loadClothes();
@@ -43,6 +50,4 @@ export class ClothGetComponent implements OnInit {
       })
     );
   }
-
-  protected readonly Cloth = Cloth;
 }

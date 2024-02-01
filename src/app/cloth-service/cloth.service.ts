@@ -15,6 +15,7 @@ export class ClothService {
   savedCloth: WritableSignal<Cloth | null> = signal(null);
 
   emitClothAddedEvent(cloth: Observable<Cloth>) {
+    console.log('Event added');
     this.clothAddedSubject.next(cloth);
   }
 
@@ -42,10 +43,6 @@ export class ClothService {
     console.log('Request Body:', newCloth);
 
     return this.http.post<Cloth>(`${apiUrl}/add`, newCloth);
-  }
-
-  refreshClothes(): void {
-    this.refreshClothesSubject.next();
   }
 
   getRefreshClothes(): Observable<void> {

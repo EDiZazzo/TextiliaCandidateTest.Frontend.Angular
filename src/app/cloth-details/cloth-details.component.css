@@ -6,4 +6,11 @@ table.p-table {
 table.p-table th.p-col-3 th {
   text-align: left;
   padding-right: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.body{
+  text-align: left;
 }

@@ -3,23 +3,23 @@
   <h2>This Cloth saved successfully!</h2>
   <table class="p-table p-col-12">
     <tr>
-      <th class="p-col-3" >Name</th>
-      <td class="p-col-9">{{ cloth.name }}</td>
+      <th class="p-col-3" align="left">Name</th>
+      <td class="p-col-9" >{{ cloth.name }}</td>
     </tr>
     <tr>
-      <th class="p-col-3">Size</th>
+      <th class="p-col-3" align="left">Size</th>
       <td class="p-col-9">{{ cloth.size }}</td>
     </tr>
     <tr>
-      <th class="p-col-3">Color</th>
+      <th class="p-col-3" align="left">Color</th>
       <td class="p-col-9">{{ cloth.color }}</td>
     </tr>
     <tr>
-      <th class="p-col-3">Created Timestamp</th>
+      <th class="p-col-3" align="left">Created Timestamp</th>
       <td class="p-col-9">{{ cloth.createdTimestamp | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
     </tr>
     <tr>
-      <th class="p-col-3">Updated Timestamp</th>
+      <th class="p-col-3" align="left">Updated Timestamp</th>
       <td class="p-col-9">{{ cloth.updatedTimestamp | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
     </tr>
   </table>

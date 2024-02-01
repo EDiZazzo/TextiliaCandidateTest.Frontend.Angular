@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClothService } from '../cloth-service/cloth.service';
 import { Cloth } from '../model/cloth';
@@ -40,11 +40,10 @@ export class ClothPostComponent implements OnInit {
       try {
         const response = this.clothService.addNew(newCloth).subscribe(
           (cloth: Cloth) => {
-            this.clothService.savedCloth.set(cloth);
+            this.clothService.savedCloth.set(cloth as Cloth);
             this.showClothDetailToast(cloth);
             this.showSuccess();
             this.clothService.emitClothAddedEvent(of(cloth))
-            this.clothService.refreshClothes();
           },
           (error) => {
             console.error('Error adding cloth:', error);

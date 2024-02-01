@@ -5,6 +5,7 @@ import {ClothService} from "../cloth-service/cloth.service";
 import {of} from "rxjs";
 
 @Component({
+  styleUrl: 'cloth-details.component.css',
   selector: 'app-cloth-details',
   templateUrl: './cloth-details.component.html'
 })
